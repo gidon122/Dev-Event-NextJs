@@ -50,12 +50,12 @@ const EventCard = (event: EventItems) => {
           </div>
         </div>
 
-        {/* View Details Button */}
+        {/* View More Button */}
         <button 
           onClick={handleOpenDetails}
           className="mt-4 w-full flex items-center justify-center gap-2 bg-dark-200 hover:bg-primary hover:text-dark-100 text-light-100 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 cursor-pointer text-center group/btn"
         >
-          <span>View Details</span>
+          <span>View More</span>
           <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
         </button>
       </div>

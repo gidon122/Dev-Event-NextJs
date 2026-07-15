@@ -83,9 +83,9 @@ const EventDetails = ({ isOpen, onClose, event }: EventDetailsProps) => {
                   />
                 </div>
                 
-                <div className="mt-6 flex flex-col gap-4">
-                  <h2 className="text-xl sm:text-2xl font-bold">About the Event</h2>
-                  <p className="text-light-200 leading-relaxed font-light">{event.description}</p>
+                <div className="mt-6 flex flex-col gap-4 bg-[#182830]/30 p-5 rounded-lg border border-[#182830]/50">
+                  <h2 className="text-xl sm:text-2xl font-bold text-gradient">Event Overview</h2>
+                  <p className="text-light-200 leading-relaxed font-light text-sm sm:text-base">{event.description}</p>
                 </div>
 
                 {/* Event Details Info Grid */}
