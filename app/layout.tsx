@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Schibsted_Grotesk } from "next/font/google";
 import "./globals.css";
-import LightRays from "@/components/LightRays";
-import Navbar from "@/components/Navbar";
+import LightRays from "@/components/ui/LightRays";
+import Navbar from "@/components/ui/Navbar";
+import Footer from "@/components/ui/Footer";
 
 const schibstedGrotesk = Schibsted_Grotesk({
   subsets: ["latin"],
@@ -40,8 +41,9 @@ export default function RootLayout({
         />
         </div>
         <main>
-        {children}
+          {children}
         </main>
+        <Footer />
       </body>
     </html>
   );

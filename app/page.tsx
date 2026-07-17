@@ -1,24 +1,20 @@
-import ExploreBtn from "@/components/ExploreBtn"
-import EventCard from "@/components/EventCard";
-import { events } from "@/lib/constants";
+import Hero from "@/components/ui/Hero";
+import FeaturedEvent from "@/components/ui/featuredEvent";
+import WhyDe from "@/components/ui/WhyDe";
+import Stats from "@/components/ui/Stats";
+import Create from "@/components/ui/Create";
+
 const Page = () => {
   return (
     <section>
-      <h1 className="text-center">The Hub for Every Dev Event You Must Not Miss</h1>
-      <p className="text-center mt-5">Hackathons, Meetups, and Conferences </p>
-      <ExploreBtn/>
-
-      <div className="mt-20 space-y-7">
-        <h3>Featured Events</h3>
-        <ul className="events">
-          {events.map((event) => (
-            <li key={event.title}><EventCard {...event}/>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <Hero />
+      
+      <FeaturedEvent />
+      <WhyDe />
+      <Stats />
+      <Create />
     </section>
-  )
-}
+  );
+};
 
 export default Page;
