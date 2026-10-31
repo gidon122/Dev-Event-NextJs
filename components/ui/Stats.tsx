@@ -7,11 +7,13 @@ import {
   MapPinned,
   TrendingUp,
 } from "lucide-react";
+import CountUp from "@/components/ui/Countup";
 
 const stats = [
   {
     icon: CalendarDays,
-    value: "120+",
+    end: 120,
+    suffix: "+",
     title: "Events Hosted",
     description:
       "Hackathons, conferences, workshops and meetups hosted every year.",
@@ -20,7 +22,8 @@ const stats = [
   },
   {
     icon: Users,
-    value: "5,000+",
+    end: 5000,
+    suffix: "+",
     title: "Developers Connected",
     description:
       "Students, engineers and founders learning and networking together.",
@@ -29,7 +32,8 @@ const stats = [
   },
   {
     icon: MapPinned,
-    value: "30+",
+    end: 30,
+    suffix: "+",
     title: "Cities Reached",
     description:
       "Connecting vibrant tech communities across different locations.",
@@ -76,7 +80,7 @@ const Stats = () => {
 
       <div className="absolute -right-16 bottom-0 h-72 w-72 rounded-full bg-cyan-500/10 blur-3xl" />
 
-      <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-[#171225] via-[#1a1329] to-[#111827] p-8 md:p-12 backdrop-blur-xl">
+      <div className="relative overflow-hidden rounded-3xl border border-white/10 p-8 md:p-12">
 
         {/* Header */}
 
@@ -151,8 +155,12 @@ const Stats = () => {
                   <Icon size={28} />
                 </motion.div>
 
-                <h3 className="text-5xl font-extrabold text-white">
-                  {stat.value}
+                <h3 className="text-5xl font-extrabold text-white tabular-nums">
+                  <CountUp
+                    end={stat.end}
+                    suffix={stat.suffix}
+                    duration={2200}
+                  />
                 </h3>
 
                 <p className="mt-3 text-lg font-semibold text-white">

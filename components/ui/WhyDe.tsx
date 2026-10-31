@@ -69,7 +69,7 @@ const WhyDe = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.25 }}
       transition={{ duration: 0.7 }}
-      className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-slate-950 via-[#151827] to-slate-900 px-6 py-16 md:px-10"
+      className="relative overflow-hidden rounded-3xl border border-white/10 px-6 py-16 md:px-10"
     >
       {/* Background Glow */}
 

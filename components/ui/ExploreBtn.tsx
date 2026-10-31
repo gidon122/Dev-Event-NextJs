@@ -1,13 +1,11 @@
 "use client"
 import Image from "next/image";
-import posthog from "posthog-js";
 
 const ExploreBtn = () => {
   return (
     <button type="button"
     id="explore-btn"
-    className="mt-7 mx-auto"
-    onClick={() => { console.log("CLICK"); posthog.capture("explore_events_clicked"); }}>
+    className="mt-7 mx-auto">
       <a href="#events">
         Explore Events
         {/* public assets use absolute path from /public; folder is "icons" not "icon" */}

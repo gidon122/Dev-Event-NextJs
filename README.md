@@ -70,8 +70,6 @@ Each event contains:
 
 Users can register for events directly from the event details modal.
 
-Registration analytics are tracked using **PostHog**.
-
 ---
 
 ## ⭐ Featured Events
@@ -141,10 +139,6 @@ Designed with a premium developer-first experience using:
 ### Icons
 
 - Lucide React
-
-### Analytics
-
-- PostHog
 
 ### Image Optimization
 
@@ -262,18 +256,6 @@ The interface includes:
 - Developer-friendly color palette
 
 ---
-
-# 📈 Analytics
-
-DevEvent uses **PostHog** to understand user interactions.
-
-Current tracked events include:
-
-- Event Card Clicked
-- Event Details Viewed
-- Event Registration Submitted
-
-These insights help improve the user experience.
 
 ---
 
@@ -402,19 +384,6 @@ http://localhost:3000
 
 ---
 
-# 📦 Environment Variables
-
-Create a `.env.local` file.
-
-Example:
-
-```env
-NEXT_PUBLIC_POSTHOG_KEY=your_posthog_key
-NEXT_PUBLIC_POSTHOG_HOST=https://app.posthog.com
-```
-
----
-
 # 🤝 Contributing
 
 Contributions are welcome.
@@ -455,7 +424,6 @@ This project is also a practical exercise in applying modern frontend developmen
 - Component architecture
 - Tailwind CSS
 - Framer Motion
-- Analytics integration
 - Responsive design
 - UI/UX best practices
 - State management

@@ -5,27 +5,25 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Sparkles, ArrowRight } from "lucide-react";
 
-import EventCard from "../events/EventCard";
-import { events } from "@/lib/constants";
+import { EventGrid } from "@/features/events";
+import type { EventSummary } from "@/features/events";
 
-const FeaturedEvent: React.FC = () => {
-  const featured = events.slice(0, 3);
-
+const FeaturedEvent: React.FC<{ events: EventSummary[] }> = ({ events }) => {
   return (
     <section
       id="featured-events"
-      className="relative w-full overflow-hidden py-10"
+      className="relative w-full overflow-hidden py-0"
     >
       {/* Background Glow */}
-      <div className="absolute -left-20 top-10 h-56 w-56 rounded-full bg-indigo-600/20 blur-3xl" />
-      <div className="absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-cyan-500/10 blur-3xl" />
+      {/* <div className="absolute -left-20 top-10 h-56 w-56 rounded-full bg-indigo-600/20 blur-3xl" />
+      <div className="absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-cyan-500/10 blur-3xl" /> */}
 
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
-        viewport={{ once: true }}
-        className="glass relative rounded-2xl border border-white/10 bg-white/5 px-8 py-10 backdrop-blur-xl"
+        viewport={{ once: false }}
+        className="relative rounded-2xl border border-white/10 px-8 py-10"
       >
         {/* Header */}
         <div className="mb-10 flex flex-col items-center text-center">
@@ -63,28 +61,13 @@ const FeaturedEvent: React.FC = () => {
           }}
           className="events"
         >
-          {featured.map((ev) => (
-            <motion.div
-              key={ev.id}
-              variants={{
-                hidden: {
-                  opacity: 0,
-                  y: 40,
-                },
-                show: {
-                  opacity: 1,
-                  y: 0,
-                },
-              }}
-              transition={{ duration: 0.5 }}
-              whileHover={{
-                y: -8,
-                transition: { duration: 0.2 },
-              }}
-            >
-              <EventCard {...ev} />
-            </motion.div>
-          ))}
+          {events.length > 0 ? (
+            <EventGrid events={events} isAuthenticated={false} />
+          ) : (
+            <p className="text-center text-sm text-gray-400">
+              New events will show up here as soon as they are published.
+            </p>
+          )}
         </motion.div>
 
         {/* CTA */}
@@ -96,7 +79,7 @@ const FeaturedEvent: React.FC = () => {
           className="mt-10 flex justify-center"
         >
           <Link
-            href="/events"
+            href="/browse-events"
             className="group inline-flex items-center gap-2 rounded-full border border-indigo-500/40 bg-gradient-to-r from-indigo-600 to-violet-600 px-7 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(99,102,241,0.45)]"
           >
             View All Events

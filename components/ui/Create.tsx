@@ -5,7 +5,7 @@ import Link from "next/link";
 const Create = () => {
   return (
     <section className="mx-auto max-w-5xl px-4 py-6 sm:px-6 lg:px-8">
-      <div className="rounded-3xl border border-emerald-500/30 bg-emerald-950/90 px-5 py-4 shadow-[0_20px_60px_-30px_rgba(0,0,0,0.8)] sm:flex sm:items-center sm:justify-between sm:px-6 sm:py-5">
+      <div className="rounded-3xl border border-emerald-500/30 px-5 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 sm:py-5">
         <p className="text-sm font-semibold text-emerald-100 sm:text-base">
           Host your own event
         </p>

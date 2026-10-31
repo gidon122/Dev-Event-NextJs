@@ -3,7 +3,7 @@ import ExploreBtn from "@/components/ui/ExploreBtn";
 
 export default function Hero() {
   return (
-    <section className="relative flex flex-col items-center justify-center px-6 py-24 text-center overflow-hidden">
+    <section className="relative flex flex-col items-center justify-center px-6 py-4 text-center overflow-hidden">
       {/* Floating Tech Icons */}
       <Code2 className="absolute left-12 top-20 h-8 w-8 text-indigo-300 animate-bounce hidden md:block" />
 
@@ -12,7 +12,7 @@ export default function Hero() {
       <Sparkles className="absolute bottom-16 left-1/4 h-6 w-6 text-cyan-300 animate-ping hidden md:block" />
 
       {/* Small Badge */}
-      <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-2 text-sm font-medium text-indigo-300 backdrop-blur">
+      <div className="mb-16 inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-2 text-sm font-medium text-indigo-300 backdrop-blur">
         🚀 Discover • Learn • Build • Network
       </div>
 
@@ -35,25 +35,6 @@ export default function Hero() {
       {/* CTA */}
       <div className="mt-10">
         <ExploreBtn />
-      </div>
-
-      {/* Tech Tags */}
-      <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
-        {[
-          "⚛ React",
-          "▲ Next.js",
-          "🐍 Python",
-          "☁ Cloud",
-          "🤖 AI",
-          "🏆 Hackathons",
-        ].map((tag) => (
-          <span
-            key={tag}
-            className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-gray-300 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-indigo-400 hover:bg-indigo-500/10 hover:text-white"
-          >
-            {tag}
-          </span>
-        ))}
       </div>
     </section>
   );

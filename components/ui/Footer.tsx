@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Footer = () => {
   return (
     <footer className="bg-slate-950 border-t border-primary/30 text-slate-300">
@@ -10,9 +12,9 @@ const Footer = () => {
         </div>
 
         <div className="grid gap-3 sm:grid-cols-3">
-          <a href="/events" className="text-sm text-slate-300 transition hover:text-white">
+          <Link href="/event" className="text-sm text-slate-300 transition hover:text-white">
             Events
-          </a>
+          </Link>
           <a href="/events/create" className="text-sm text-slate-300 transition hover:text-white">
             Submit event
           </a>
