@@ -24,7 +24,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link href="/browse-events" className="hover:text-primary transition-colors">
+            <Link href="/event" className="hover:text-primary transition-colors">
               Events
             </Link>
           </li>

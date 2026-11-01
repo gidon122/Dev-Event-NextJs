@@ -18,7 +18,7 @@ const ticketLink = `${base} block border border-[#59deca]/40 bg-[#59deca]/10 tex
 
 function loginHref() {
   const next = window.location.pathname + window.location.search;
-  return `/login?next=${encodeURIComponent(next)}`;
+  return `/login?redirect=${encodeURIComponent(next)}`;
 }
 
 /**

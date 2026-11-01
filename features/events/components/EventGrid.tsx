@@ -11,6 +11,10 @@ interface EventGridProps {
   isAuthenticated: boolean;
   /** Ids the current student is already registered for. */
   registeredEventIds?: string[];
+  /** Optional base path for card link actions (e.g. "/event" routes to "/event/[id]"). */
+  detailBasePath?: string;
+  actionHref?: (event: EventSummary) => string;
+  actionLabel?: string;
 }
 
 const NONE: string[] = [];
@@ -19,6 +23,9 @@ export function EventGrid({
   events,
   isAuthenticated,
   registeredEventIds = NONE,
+  detailBasePath,
+  actionHref,
+  actionLabel,
 }: EventGridProps) {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const registered = useMemo(
@@ -33,13 +40,25 @@ export function EventGrid({
   return (
     <>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {events.map((event) => (
-          <EventCard
-            key={event.id}
-            event={event}
-            onViewMore={(e) => setSelectedId(e.id)}
-          />
-        ))}
+        {events.map((event) => {
+          const cardActionHref = actionHref
+            ? actionHref(event)
+            : detailBasePath
+              ? `${detailBasePath}/${event.id}`
+              : undefined;
+
+          return (
+            <EventCard
+              key={event.id}
+              event={event}
+              actionHref={cardActionHref}
+              actionLabel={
+                actionLabel ?? (cardActionHref ? "View event" : "View more")
+              }
+              onViewMore={(e) => setSelectedId(e.id)}
+            />
+          );
+        })}
       </div>
 
       {selected && (

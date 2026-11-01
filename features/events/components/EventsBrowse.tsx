@@ -54,6 +54,7 @@ export function EventsBrowse({
           events={result.items}
           isAuthenticated={isAuthenticated}
           registeredEventIds={registeredEventIds}
+          detailBasePath={basePath === "/event" ? basePath : undefined}
         />
       ) : (
         <EmptyState

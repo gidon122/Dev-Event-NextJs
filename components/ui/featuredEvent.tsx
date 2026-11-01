@@ -14,6 +14,8 @@ const FeaturedEvent: React.FC<{ events: EventSummary[] }> = ({ events }) => {
       id="featured-events"
       className="relative w-full overflow-hidden py-0"
     >
+      <div id="events" className="sr-only" />
+
       {/* Background Glow */}
       {/* <div className="absolute -left-20 top-10 h-56 w-56 rounded-full bg-indigo-600/20 blur-3xl" />
       <div className="absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-cyan-500/10 blur-3xl" /> */}
@@ -59,10 +61,15 @@ const FeaturedEvent: React.FC<{ events: EventSummary[] }> = ({ events }) => {
               },
             },
           }}
-          className="events"
+          className="w-full"
         >
           {events.length > 0 ? (
-            <EventGrid events={events} isAuthenticated={false} />
+            <EventGrid
+              events={events}
+              isAuthenticated={false}
+              actionHref={() => "/event"}
+              actionLabel="View event"
+            />
           ) : (
             <p className="text-center text-sm text-gray-400">
               New events will show up here as soon as they are published.
@@ -79,7 +86,7 @@ const FeaturedEvent: React.FC<{ events: EventSummary[] }> = ({ events }) => {
           className="mt-10 flex justify-center"
         >
           <Link
-            href="/browse-events"
+            href="/event"
             className="group inline-flex items-center gap-2 rounded-full border border-indigo-500/40 bg-gradient-to-r from-indigo-600 to-violet-600 px-7 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(99,102,241,0.45)]"
           >
             View All Events
