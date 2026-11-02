@@ -3,11 +3,27 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useAuth } from "@/lib/auth-context";
+import { useUser, useClerk } from "@clerk/nextjs";
 import { LogOut, LayoutDashboard } from "lucide-react";
 
 const Navbar = () => {
-  const { user, isAuthenticated, logout } = useAuth();
+  const { user, isSignedIn, isLoaded } = useUser();
+  const { signOut } = useClerk();
+
+  const displayName = user
+    ? user.fullName ||
+      [user.firstName, user.lastName].filter(Boolean).join(" ") ||
+      user.username ||
+      "Profile"
+    : "Profile";
+
+  const initials = user
+    ? (user.firstName ? user.firstName[0] : "") +
+        (user.lastName ? user.lastName[0] : "") ||
+      (user.primaryEmailAddress?.emailAddress
+        ? user.primaryEmailAddress.emailAddress[0].toUpperCase()
+        : "U")
+    : "U";
 
   return (
     <header>
@@ -29,7 +45,7 @@ const Navbar = () => {
             </Link>
           </li>
 
-          {isAuthenticated ? (
+          {isLoaded && isSignedIn ? (
             <>
               <li>
                 <Link
@@ -44,13 +60,13 @@ const Navbar = () => {
                 <Link
                   href="/profile"
                   className="flex h-7 w-7 items-center justify-center rounded-full bg-[#0d2a4a] text-xs font-bold text-[#93c5fa] ring-1 ring-[#1e3a5f] hover:scale-105 transition-transform"
-                  title={user?.name || "Profile"}
+                  title={displayName}
                 >
-                  {user?.avatarInitials || "AO"}
+                  {initials}
                 </Link>
                 <button
                   type="button"
-                  onClick={() => logout()}
+                  onClick={() => signOut({ redirectUrl: "/" })}
                   className="text-slate-400 hover:text-red-400 transition-colors"
                   title="Sign out"
                 >
@@ -58,7 +74,7 @@ const Navbar = () => {
                 </button>
               </li>
             </>
-          ) : (
+          ) : isLoaded ? (
             <li>
               <Link
                 href="/login"
@@ -67,7 +83,7 @@ const Navbar = () => {
                 Sign In
               </Link>
             </li>
-          )}
+          ) : null}
         </ul>
       </nav>
     </header>

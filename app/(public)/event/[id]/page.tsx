@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
-import { cookies } from "next/headers";
 import { Calendar, MapPin, Users, ArrowLeft } from "lucide-react";
+import { auth } from "@clerk/nextjs/server";
 import { getEventById } from "@/features/events/service.server";
 import { getViewerState, spotsLabel, spotsLeft } from "@/features/events/utils";
 import { CategoryBadge } from "@/features/events/components/CategoryBadge";
 import { ReserveButton } from "@/features/events/components/ReserveButton";
 import { formatEventDate } from "@/lib/dates";
-import { AUTH_COOKIE_NAME } from "@/lib/auth";
 
 export async function generateMetadata({
   params,
@@ -31,10 +30,9 @@ export default async function EventDetailPage({
 }) {
   const { id } = await params;
 
-  // Route-level authentication guard matching middleware conventions
-  const cookieStore = await cookies();
-  const isAuthenticated = Boolean(cookieStore.get(AUTH_COOKIE_NAME)?.value);
-  if (!isAuthenticated) {
+  // Server-side authentication check using Clerk API
+  const { userId } = await auth();
+  if (!userId) {
     redirect(`/login?redirect=/event/${encodeURIComponent(id)}`);
   }
 

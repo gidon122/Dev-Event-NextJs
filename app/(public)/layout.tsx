@@ -4,7 +4,7 @@ import "./globals.css";
 import LightRays from "@/components/ui/LightRays";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
-import { AuthProvider } from "@/lib/auth-context";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const schibstedGrotesk = Schibsted_Grotesk({
   subsets: ["latin"],
@@ -22,11 +22,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ClerkProvider>
     <html lang="en">
       <body
         className={`${schibstedGrotesk.className} min-h-screen antialiased`}
       >
-        <AuthProvider>
           <Navbar />
           <div className="absolute inset-0 top-0 z-[-1] min-h-screen">
             <LightRays
@@ -44,8 +44,8 @@ export default function RootLayout({
           </div>
           <main>{children}</main>
           <Footer />
-        </AuthProvider>
       </body>
     </html>
+    </ClerkProvider>
   );
 }

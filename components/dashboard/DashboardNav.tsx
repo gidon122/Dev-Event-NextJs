@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   Compass,
@@ -11,9 +11,8 @@ import {
   MessageSquareText,
   User,
   LogOut,
-  Loader2,
 } from "lucide-react";
-import { useAuth } from "@/lib/auth-context";
+import { useClerk } from "@clerk/nextjs";
 
 interface DashboardNavProps {
   children: React.ReactNode;
@@ -21,14 +20,7 @@ interface DashboardNavProps {
 
 export default function DashboardNav({ children }: DashboardNavProps) {
   const pathname = usePathname();
-  const router = useRouter();
-  const { isAuthenticated, isLoading, logout } = useAuth();
-
-  useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
-      router.push(`/login?redirect=${encodeURIComponent(pathname)}`);
-    }
-  }, [isLoading, isAuthenticated, pathname, router]);
+  const { signOut } = useClerk();
 
   const navItems = [
     {
@@ -64,19 +56,6 @@ export default function DashboardNav({ children }: DashboardNavProps) {
       active: pathname === "/profile",
     },
   ];
-
-  const handleSignOut = async () => {
-    await logout();
-    router.push("/login");
-  };
-
-  if (isLoading) {
-    return (
-      <div className="flex h-screen w-full items-center justify-center bg-[#07090e] text-slate-400">
-        <Loader2 className="h-8 w-8 animate-spin text-[#59deca]" />
-      </div>
-    );
-  }
 
   return (
     <div className="flex min-h-screen w-full bg-[#07090e] text-slate-200">
@@ -140,7 +119,8 @@ export default function DashboardNav({ children }: DashboardNavProps) {
         {/* Bottom Section */}
         <div className="space-y-3 border-t border-[#151c24] pt-4">
           <button
-            onClick={handleSignOut}
+            type="button"
+            onClick={() => signOut({ redirectUrl: "/login" })}
             className="flex w-full items-center gap-3 rounded-xl px-3.5 py-2.5 text-xs font-medium text-slate-400 transition-colors hover:bg-red-500/10 hover:text-red-400"
           >
             <LogOut className="h-4 w-4" />

@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
 import { Sparkles } from "lucide-react";
+import { auth } from "@clerk/nextjs/server";
 import { EventsBrowse, parseEventQuery } from "@/features/events";
 import { listEvents } from "@/features/events/service.server";
-import { AUTH_COOKIE_NAME } from "@/lib/auth";
 
 export const metadata: Metadata = {
   title: "Events | DevEvent",
@@ -18,8 +17,8 @@ export default async function PublicEventsPage({
   const query = parseEventQuery(await searchParams);
   const result = await listEvents(query);
 
-  const cookieStore = await cookies();
-  const isAuthenticated = Boolean(cookieStore.get(AUTH_COOKIE_NAME)?.value);
+  const { userId } = await auth();
+  const isAuthenticated = Boolean(userId);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">

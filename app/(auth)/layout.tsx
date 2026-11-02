@@ -3,7 +3,7 @@ import { Schibsted_Grotesk } from "next/font/google";
 import Link from "next/link";
 import Image from "next/image";
 import "../globals.css";
-import { AuthProvider } from "@/lib/auth-context";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const schibstedGrotesk = Schibsted_Grotesk({
   subsets: ["latin"],
@@ -21,11 +21,13 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
+    <ClerkProvider>
     <html lang="en">
+
+    
       <body
         className={`${schibstedGrotesk.className} min-h-screen bg-[#020303] text-foreground antialiased selection:bg-[#59deca]/20 selection:text-[#5dfeca]`}
       >
-        <AuthProvider>
           <div className="relative flex min-h-screen flex-col justify-between overflow-hidden">
             {/* Ambient Background Lights */}
             <div className="pointer-events-none absolute -top-40 left-1/2 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-gradient-to-b from-[#59deca]/15 via-indigo-600/10 to-transparent blur-3xl" />
@@ -94,8 +96,9 @@ export default function AuthLayout({
               </div>
             </footer>
           </div>
-        </AuthProvider>
       </body>
+  
     </html>
+    </ClerkProvider>
   );
 }
