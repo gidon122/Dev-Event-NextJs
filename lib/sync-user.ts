@@ -42,7 +42,7 @@ export async function syncAuthenticatedUser(): Promise<IUser | null> {
     },
     {
       upsert: true,
-      new: true,
+      returnDocument: "after",
       setDefaultsOnInsert: true,
     }
   );
