@@ -16,17 +16,15 @@ export interface EventSummary {
   startsAt: string;
   endsAt: string;
   venue: string;
-  bannerUrl?: string;
+  description: string;
+  organizerName?: string;
   capacity: number;
   registeredCount: number;
   status: EventStatus;
 }
 
 /** Used by the full event page (/events/[id]). */
-export interface EventFull extends EventSummary {
-  description: string;
-  organizerName?: string;
-}
+export type EventFull = EventSummary;
 
 export interface PageMeta {
   total: number;

@@ -28,6 +28,8 @@ export function EventGrid({
   actionLabel,
 }: EventGridProps) {
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [returnFocusTarget, setReturnFocusTarget] =
+    useState<HTMLButtonElement | null>(null);
   const registered = useMemo(
     () => new Set(registeredEventIds),
     [registeredEventIds],
@@ -55,7 +57,10 @@ export function EventGrid({
               actionLabel={
                 actionLabel ?? (cardActionHref ? "View event" : "View more")
               }
-              onViewMore={(e) => setSelectedId(e.id)}
+              onViewMore={(event, trigger) => {
+                setReturnFocusTarget(trigger);
+                setSelectedId(event.id);
+              }}
             />
           );
         })}
@@ -66,6 +71,7 @@ export function EventGrid({
           event={selected}
           state={getViewerState(selected, registered.has(selected.id))}
           isAuthenticated={isAuthenticated}
+          returnFocusTarget={returnFocusTarget}
           onClose={close}
         />
       )}

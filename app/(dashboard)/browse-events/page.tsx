@@ -1,9 +1,8 @@
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 import { EventsBrowse, parseEventQuery } from "@/features/events";
 import { listEvents } from "@/features/events/service.server";
-
-// TODO: replace with the signed-in student's registrations once the
-// registrations feature exists (one batch query for the ids on this page).
-const registeredEventIds = ["evt-ai-hack-night"];
+import { getUserRegisteredEventIds } from "@/features/registration/service.server";
 
 export default async function BrowseEventsPage({
   searchParams,
@@ -12,6 +11,14 @@ export default async function BrowseEventsPage({
 }) {
   const query = parseEventQuery(await searchParams);
   const result = await listEvents(query);
+  const { userId } = await auth();
+  if (!userId) {
+    redirect("/login?redirect=%2Fbrowse-events");
+  }
+  const registeredEventIds = await getUserRegisteredEventIds(
+    userId,
+    result.items.map((event) => event.id),
+  );
 
   return (
     <div className="space-y-6">

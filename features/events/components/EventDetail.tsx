@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect } from "react";
-import { Calendar, MapPin, X } from "lucide-react";
+import { useEffect, useId, useRef } from "react";
+import { CalendarDays, MapPin, X } from "lucide-react";
 import { formatEventDate } from "@/lib/dates";
 import type { EventSummary, ViewerEventState } from "../types";
-import { spotsLabel, spotsLeft } from "../utils";
 import { CategoryBadge } from "./CategoryBadge";
 import { ReserveButton } from "./ReserveButton";
 
@@ -12,40 +11,73 @@ interface EventDetailProps {
   event: EventSummary;
   state: ViewerEventState;
   isAuthenticated: boolean;
+  returnFocusTarget: HTMLButtonElement | null;
   onClose: () => void;
 }
 
-function availabilityText(event: EventSummary, state: ViewerEventState) {
-  if (state === "registered") return "You are registered for this event.";
-  if (state === "full") return "This event is currently full.";
-  if (state === "closed") {
-    return event.status === "cancelled"
-      ? "This event was cancelled."
-      : "This event has ended.";
-  }
-  return spotsLabel(spotsLeft(event));
-}
+const FOCUSABLE_SELECTOR =
+  'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 /** The "View more" dialog. */
 export function EventDetail({
   event,
   state,
   isAuthenticated,
+  returnFocusTarget,
   onClose,
 }: EventDetailProps) {
+  const dialogRef = useRef<HTMLElement>(null);
+  const titleId = useId();
+  const descriptionId = useId();
+
   useEffect(() => {
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    document.addEventListener("keydown", onKeyDown);
+    const dialog = dialogRef.current;
+    const closeButton = dialog?.querySelector<HTMLElement>("[data-dialog-close]");
     const previousOverflow = document.body.style.overflow;
+
+    closeButton?.focus();
     document.body.style.overflow = "hidden";
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        onClose();
+        return;
+      }
+
+      if (e.key !== "Tab" || !dialog) return;
+
+      const focusable = Array.from(
+        dialog.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR),
+      );
+      if (focusable.length === 0) {
+        e.preventDefault();
+        dialog.focus();
+        return;
+      }
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (!dialog.contains(document.activeElement)) {
+        e.preventDefault();
+        first.focus();
+      } else if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
 
     return () => {
       document.removeEventListener("keydown", onKeyDown);
       document.body.style.overflow = previousOverflow;
+      returnFocusTarget?.focus();
     };
-  }, [onClose]);
+  }, [onClose, returnFocusTarget]);
 
   return (
     <div
@@ -55,52 +87,74 @@ export function EventDetail({
     >
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
       <section
+        ref={dialogRef}
         role="dialog"
         aria-modal="true"
-        aria-labelledby="event-details-title"
-        className="relative z-10 w-full max-w-lg rounded-2xl border border-white/10 bg-[#0f141d] p-6 shadow-2xl"
+        aria-labelledby={titleId}
+        aria-describedby={descriptionId}
+        tabIndex={-1}
+        className="relative z-10 max-h-[calc(100dvh-2rem)] w-full max-w-3xl overflow-y-auto rounded-[24px] border border-white/10 bg-[#0c1515] p-6 shadow-2xl sm:p-10"
         onClick={(e) => e.stopPropagation()}
       >
-        <button
-          type="button"
-          onClick={onClose}
-          autoFocus
-          className="absolute right-4 top-4 rounded-lg p-2 text-slate-400 transition hover:bg-white/10 hover:text-white"
-          aria-label="Close event details"
-        >
-          <X className="h-4 w-4" />
-        </button>
+        <div className="flex items-start gap-4">
+          <CategoryBadge category={event.category} />
+          <button
+            type="button"
+            onClick={onClose}
+            data-dialog-close
+            className="ml-auto rounded-lg p-2 text-slate-400 transition hover:bg-white/10 hover:text-white"
+            aria-label="Close event details"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
 
-        <CategoryBadge category={event.category} />
-        <h2
-          id="event-details-title"
-          className="mt-4 pr-8 text-2xl font-bold text-white"
-        >
+        <h2 id={titleId} className="mt-5 text-3xl font-extrabold text-white sm:text-4xl">
           {event.title}
         </h2>
+        <p className="mt-2 text-sm text-slate-400">
+          Organized by <span className="font-semibold text-slate-200">{event.organizerName ?? "Event organizer"}</span>
+        </p>
 
-        <div className="mt-5 space-y-4 text-sm text-slate-300">
-          <p className="flex items-center gap-3">
-            <Calendar className="h-4 w-4 text-cyan-300" />
-            {formatEventDate(event.startsAt)}
-          </p>
-          <p className="flex items-center gap-3">
-            <MapPin className="h-4 w-4 text-cyan-300" />
-            {event.venue}
-          </p>
-          <p className="border-t border-white/10 pt-4 text-slate-400">
-            {availabilityText(event, state)}
+        <div className="mt-8 grid grid-cols-1 gap-5 rounded-2xl bg-[#070b0c] p-5 sm:grid-cols-2 sm:p-6">
+          <div className="flex min-w-0 items-center gap-3">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-400">
+              <CalendarDays className="h-5 w-5" />
+            </div>
+            <div className="min-w-0">
+              <div className="text-[11px] text-slate-400">Date &amp; Time</div>
+              <div className="text-sm font-semibold text-white">{formatEventDate(event.startsAt)}</div>
+            </div>
+          </div>
+          <div className="flex min-w-0 items-center gap-3">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-500/10 text-indigo-400">
+              <MapPin className="h-5 w-5" />
+            </div>
+            <div className="min-w-0">
+              <div className="text-[11px] text-slate-400">Location</div>
+              <div className="text-sm font-semibold text-white">{event.venue}</div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-8 border-t border-white/10 pt-7">
+          <h3 className="text-base font-semibold text-white">About this event</h3>
+          <p id={descriptionId} className="mt-3 whitespace-pre-line text-sm leading-relaxed text-slate-300">
+            {event.description}
           </p>
         </div>
 
-        <div className="mt-6">
-          <ReserveButton
-            eventId={event.id}
-            state={state}
-            isAuthenticated={isAuthenticated}
-          />
+        <div className="mt-8 flex flex-col gap-5 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-end">
+          <div className="w-full sm:max-w-48">
+            <ReserveButton
+              event={event}
+              state={state}
+              isAuthenticated={isAuthenticated}
+            />
+          </div>
         </div>
       </section>
+
     </div>
   );
 }

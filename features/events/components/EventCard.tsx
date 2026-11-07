@@ -6,7 +6,7 @@ import { CategoryBadge } from "./CategoryBadge";
 
 interface EventCardProps {
   event: EventSummary;
-  onViewMore?: (event: EventSummary) => void;
+  onViewMore?: (event: EventSummary, trigger: HTMLButtonElement) => void;
   actionHref?: string;
   actionLabel?: string;
 }
@@ -55,7 +55,8 @@ export function EventCard({
         ) : (
           <button
             type="button"
-            onClick={() => onViewMore?.(event)}
+            onClick={(e) => onViewMore?.(event, e.currentTarget)}
+            aria-haspopup="dialog"
             className={buttonClasses}
           >
             {actionLabel}

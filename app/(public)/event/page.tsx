@@ -3,6 +3,7 @@ import { Sparkles } from "lucide-react";
 import { auth } from "@clerk/nextjs/server";
 import { EventsBrowse, parseEventQuery } from "@/features/events";
 import { listEvents } from "@/features/events/service.server";
+import { getUserRegisteredEventIds } from "@/features/registration/service.server";
 
 export const metadata: Metadata = {
   title: "Events | DevEvent",
@@ -19,6 +20,12 @@ export default async function PublicEventsPage({
 
   const { userId } = await auth();
   const isAuthenticated = Boolean(userId);
+  const registeredEventIds = userId
+    ? await getUserRegisteredEventIds(
+        userId,
+        result.items.map((event) => event.id),
+      )
+    : [];
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
@@ -41,6 +48,7 @@ export default async function PublicEventsPage({
         query={query}
         basePath="/event"
         isAuthenticated={isAuthenticated}
+        registeredEventIds={registeredEventIds}
       />
     </div>
   );

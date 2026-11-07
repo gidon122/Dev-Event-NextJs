@@ -25,6 +25,16 @@ export const EVENT_CATEGORIES = [
     label: "Social",
     badgeClass: "bg-purple-600/30 text-purple-300 border-purple-500/30",
   },
+  {
+    value: "religious",
+    label: "Religious",
+    badgeClass: "bg-purple-600/30 text-purple-300 border-purple-500/30",
+  },
+  {
+    value: "spiritual",
+    label: "Spiritual",
+    badgeClass: "bg-purple-600/30 text-purple-300 border-purple-500/30",
+  },
 ] as const;
 
 export type EventCategory = (typeof EVENT_CATEGORIES)[number]["value"];
@@ -32,18 +42,6 @@ export type EventCategory = (typeof EVENT_CATEGORIES)[number]["value"];
 export const EVENT_CATEGORY_VALUES = EVENT_CATEGORIES.map((c) => c.value) as [
   EventCategory,
   ...EventCategory[],
-];
-
-export const EVENT_SORTS = [
-  { value: "soonest", label: "Soonest first" },
-  { value: "latest", label: "Latest first" },
-] as const;
-
-export type EventSort = (typeof EVENT_SORTS)[number]["value"];
-
-export const EVENT_SORT_VALUES = EVENT_SORTS.map((s) => s.value) as [
-  EventSort,
-  ...EventSort[],
 ];
 
 export const DEFAULT_PAGE_SIZE = 12;

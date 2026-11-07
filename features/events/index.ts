@@ -10,7 +10,7 @@ export { parseEventQuery } from "./schemas";
 export type { EventQuery } from "./schemas";
 
 export { EVENT_CATEGORIES } from "./data";
-export type { EventCategory, EventSort } from "./data";
+export type { EventCategory } from "./data";
 
 export type {
   EventFull,

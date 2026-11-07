@@ -7,7 +7,6 @@ import type { EventQuery } from "../schemas";
 import type { EventSummary, Paginated } from "../types";
 import { buildEventsHref } from "../utils";
 import { CategoryChips } from "./CategoryChips";
-import { EventFilters } from "./EventFilters";
 import { EventGrid } from "./EventGrid";
 import { EventSearchBar } from "./EventSearchBar";
 
@@ -21,7 +20,7 @@ interface EventsBrowseProps {
 }
 
 /**
- * Search + category chips + filters + grid + pagination.
+ * Search + category chips + grid + pagination.
  * It receives its data as props, so pages stay in charge of fetching and
  * both /browse-events and /events can render it.
  */
@@ -32,20 +31,15 @@ export function EventsBrowse({
   isAuthenticated = false,
   registeredEventIds,
 }: EventsBrowseProps) {
-  const hasFilters = Boolean(query.q || query.category || query.from);
+  const hasFilters = Boolean(query.q || query.category);
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col gap-3 sm:flex-row">
-        <Suspense
-          fallback={<div className="h-10 flex-1 rounded-xl bg-[#0f141d]" />}
-        >
-          <EventSearchBar />
-        </Suspense>
-        <Suspense fallback={null}>
-          <EventFilters />
-        </Suspense>
-      </div>
+      <Suspense
+        fallback={<div className="h-10 rounded-xl bg-[#0f141d]" />}
+      >
+        <EventSearchBar />
+      </Suspense>
 
       <CategoryChips basePath={basePath} query={query} />
 
