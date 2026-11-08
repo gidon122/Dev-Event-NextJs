@@ -39,14 +39,12 @@ export default function DashboardNav({ children }: DashboardNavProps) {
       label: "My tickets",
       href: "/tickets",
       icon: Ticket,
-      badge: 3,
       active: pathname === "/tickets",
     },
     {
       label: "My reviews",
       href: "/reviews",
       icon: MessageSquareText,
-      badge: 1,
       active: pathname === "/reviews",
     },
     {
@@ -99,17 +97,6 @@ export default function DashboardNav({ children }: DashboardNavProps) {
                     <Icon className={`h-4 w-4 ${item.active ? "text-primary" : "text-muted-foreground"}`} />
                     <span>{item.label}</span>
                   </div>
-                  {item.badge !== undefined && (
-                    <span
-                      className={`flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-bold ${
-                        item.active
-                          ? "bg-primary/15 text-primary"
-                          : "bg-surface-hover text-muted-foreground"
-                      }`}
-                    >
-                      {item.badge}
-                    </span>
-                  )}
                 </Link>
               );
             })}

@@ -1,6 +1,7 @@
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { syncAuthenticatedUser } from "@/lib/sync-user";
+import { getUserDashboardData } from "@/features/dashboard/service.server";
 import DashboardClient from "./DashboardClient";
 
 export default async function StudentDashboardPage() {
@@ -22,7 +23,8 @@ export default async function StudentDashboardPage() {
     user?.firstName ||
     user?.fullName?.split(" ")[0] ||
     user?.username ||
-    "Amina";
+    "there";
+  const dashboardData = await getUserDashboardData(userId);
 
-  return <DashboardClient userName={userName} />;
+  return <DashboardClient userName={userName} data={dashboardData} />;
 }
