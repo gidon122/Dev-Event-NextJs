@@ -8,20 +8,20 @@ export default function RegisterPage() {
         appearance={{
           elements: {
             rootBox: "w-full max-w-md",
-            card: "border border-white/10 bg-[#0d161a]/90 shadow-2xl backdrop-blur-xl text-white",
-            headerTitle: "text-white text-xl font-bold",
-            headerSubtitle: "text-slate-400 text-xs",
+            card: "border border-line bg-surface/90 shadow-2xl backdrop-blur-xl text-foreground",
+            headerTitle: "text-foreground text-xl font-bold",
+            headerSubtitle: "text-muted-foreground text-xs",
             socialButtonsBlockButton:
-              "border-white/10 bg-white/5 text-white hover:bg-white/10",
+              "border-line bg-surface-raised text-foreground hover:bg-surface-hover",
             formButtonPrimary:
-              "bg-[#59deca] text-black hover:bg-[#5dfeca] font-semibold text-xs transition-colors",
+              "bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-xs transition-colors",
             formFieldInput:
-              "bg-[#070b0e] border-[#182830] text-white text-xs focus:border-[#59deca]",
-            formFieldLabel: "text-slate-300 text-xs",
-            footerActionLink: "text-[#5dfeca] hover:underline",
-            identityPreviewText: "text-white",
-            dividerLine: "bg-white/10",
-            dividerText: "text-slate-400 text-xs",
+              "bg-background border-line-strong text-foreground text-xs focus:border-primary",
+            formFieldLabel: "text-muted-foreground text-xs",
+            footerActionLink: "text-primary hover:underline",
+            identityPreviewText: "text-foreground",
+            dividerLine: "bg-line",
+            dividerText: "text-muted-foreground text-xs",
           },
         }}
       />

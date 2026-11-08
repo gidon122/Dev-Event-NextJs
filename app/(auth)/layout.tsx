@@ -7,7 +7,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 
 const schibstedGrotesk = Schibsted_Grotesk({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-schibsted-grotesk",
 });
 
 export const metadata: Metadata = {
@@ -26,13 +26,13 @@ export default function AuthLayout({
 
     
       <body
-        className={`${schibstedGrotesk.className} min-h-screen bg-[#020303] text-foreground antialiased selection:bg-[#59deca]/20 selection:text-[#5dfeca]`}
+        className={`${schibstedGrotesk.className} min-h-screen bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary`}
       >
           <div className="relative flex min-h-screen flex-col justify-between overflow-hidden">
             {/* Ambient Background Lights */}
-            <div className="pointer-events-none absolute -top-40 left-1/2 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-gradient-to-b from-[#59deca]/15 via-indigo-600/10 to-transparent blur-3xl" />
-            <div className="pointer-events-none absolute -bottom-40 -left-40 h-[450px] w-[450px] rounded-full bg-violet-600/10 blur-3xl" />
-            <div className="pointer-events-none absolute -bottom-40 -right-40 h-[450px] w-[450px] rounded-full bg-cyan-600/10 blur-3xl" />
+            <div className="pointer-events-none absolute -top-40 left-1/2 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-gradient-to-b from-primary/15 via-primary/5 to-transparent blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-40 -left-40 h-[450px] w-[450px] rounded-full bg-primary/5 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-40 -right-40 h-[450px] w-[450px] rounded-full bg-primary/5 blur-3xl" />
 
             {/* Subtle grid pattern */}
             <div
@@ -49,7 +49,7 @@ export default function AuthLayout({
                 href="/"
                 className="group flex items-center gap-2.5 transition-transform hover:scale-105"
               >
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/5 backdrop-blur-md transition-colors group-hover:border-[#59deca]/40">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-line bg-surface/70 backdrop-blur-md transition-colors group-hover:border-primary/40">
                   <Image
                     src="/icons/logo.png"
                     alt="EventLoop Logo"
@@ -59,10 +59,10 @@ export default function AuthLayout({
                   />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-base font-bold tracking-tight text-white">
-                    Event<span className="text-[#59deca]">Loop</span>
+                  <span className="text-base font-bold tracking-tight text-foreground">
+                    Event<span className="text-primary">Loop</span>
                   </span>
-                  <span className="text-[10px] tracking-wider text-slate-400 uppercase">
+                  <span className="text-[10px] tracking-wider text-muted-foreground uppercase">
                     Campus Developer Network
                   </span>
                 </div>
@@ -70,7 +70,7 @@ export default function AuthLayout({
 
               <Link
                 href="/"
-                className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-slate-300 backdrop-blur-sm transition-colors hover:border-white/20 hover:text-white"
+                className="rounded-lg border border-line bg-surface/70 px-3 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur-sm transition-colors hover:border-line-strong hover:text-foreground"
               >
                 ← Back to Home
               </Link>
@@ -82,15 +82,15 @@ export default function AuthLayout({
             </main>
 
             {/* Minimal Sleek Footer */}
-            <footer className="relative z-10 flex flex-col items-center justify-between gap-3 px-6 py-6 text-center text-xs text-slate-500 sm:flex-row sm:px-12">
+            <footer className="relative z-10 flex flex-col items-center justify-between gap-3 px-6 py-6 text-center text-xs text-subtle sm:flex-row sm:px-12">
               <p>© 2026 EventLoop. Designed for Campus Innovators.</p>
-              <div className="flex items-center gap-4 text-slate-400">
+              <div className="flex items-center gap-4 text-muted-foreground">
                 <span className="inline-flex items-center gap-1.5">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#59deca] animate-pulse" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
                   Encrypted Session
                 </span>
                 <span>•</span>
-                <Link href="/" className="hover:text-slate-200 transition-colors">
+                <Link href="/" className="hover:text-foreground transition-colors">
                   Security
                 </Link>
               </div>

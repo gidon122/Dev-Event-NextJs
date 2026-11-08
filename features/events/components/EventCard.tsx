@@ -18,16 +18,16 @@ export function EventCard({
   actionLabel = "View event",
 }: EventCardProps) {
   const buttonClasses =
-    "block w-full text-center rounded-xl border border-white/15 bg-white/5 px-3 py-2 text-xs font-medium text-white transition hover:border-[#59deca] hover:bg-[#59deca] hover:text-black";
+    "btn btn-ghost w-full rounded-xl px-3 py-2 text-xs hover:border-primary hover:bg-primary hover:text-primary-foreground";
 
   return (
-    <div className="group flex flex-col justify-between rounded-2xl border border-white/5 bg-[#0f141d] p-5 transition-all hover:border-white/15 hover:bg-[#121924]">
+    <div className="surface group flex flex-col justify-between p-5 transition-all hover:border-line-strong hover:bg-surface-hover">
       <div>
         <CategoryBadge category={event.category} />
 
-        <h3 className="mt-4 line-clamp-1 text-base font-bold text-white">
+        <h3 className="mt-4 line-clamp-1 text-base font-bold text-foreground">
           {actionHref ? (
-            <Link href={actionHref} className="hover:text-[#59deca] transition-colors">
+            <Link href={actionHref} className="transition-colors hover:text-primary">
               {event.title}
             </Link>
           ) : (
@@ -35,13 +35,13 @@ export function EventCard({
           )}
         </h3>
 
-        <div className="mt-3 space-y-1.5 text-xs text-slate-400">
+        <div className="mt-3 space-y-1.5 text-xs text-muted-foreground">
           <div className="flex items-center gap-2">
-            <Calendar className="h-3.5 w-3.5 text-slate-400" />
+            <Calendar className="h-3.5 w-3.5 text-highlight" />
             <span>{formatEventDate(event.startsAt)}</span>
           </div>
           <div className="flex items-center gap-2">
-            <MapPin className="h-3.5 w-3.5 text-slate-400" />
+            <MapPin className="h-3.5 w-3.5 text-primary" />
             <span>{event.venue}</span>
           </div>
         </div>

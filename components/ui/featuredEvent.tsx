@@ -16,32 +16,28 @@ const FeaturedEvent: React.FC<{ events: EventSummary[] }> = ({ events }) => {
     >
       <div id="events" className="sr-only" />
 
-      {/* Background Glow */}
-      {/* <div className="absolute -left-20 top-10 h-56 w-56 rounded-full bg-indigo-600/20 blur-3xl" />
-      <div className="absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-cyan-500/10 blur-3xl" /> */}
-
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
         viewport={{ once: false }}
-        className="relative rounded-2xl border border-white/10 px-8 py-10"
+        className="surface-raised relative px-8 py-10"
       >
         {/* Header */}
         <div className="mb-10 flex flex-col items-center text-center">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-2 text-sm text-indigo-300">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm text-primary">
             <Sparkles className="h-4 w-4" />
             Featured This Week
           </div>
 
-          <h2 className="font-schibsted-grotesk text-3xl font-bold text-white md:text-4xl">
+          <h2 className="font-sans text-3xl font-bold text-foreground md:text-4xl">
             Discover{" "}
-            <span className="bg-gradient-to-r from-cyan-400 via-indigo-400 to-violet-400 bg-clip-text text-transparent">
+            <span className="text-gradient">
               Trending Tech Events
             </span>
           </h2>
 
-          <p className="mt-4 max-w-2xl text-gray-400">
+          <p className="mt-4 max-w-2xl text-muted-foreground">
             Handpicked hackathons, conferences, workshops and meetups
             designed to help you learn, network and build with the developer
             community.
@@ -71,7 +67,7 @@ const FeaturedEvent: React.FC<{ events: EventSummary[] }> = ({ events }) => {
               actionLabel="View event"
             />
           ) : (
-            <p className="text-center text-sm text-gray-400">
+            <p className="text-center text-sm text-muted-foreground">
               New events will show up here as soon as they are published.
             </p>
           )}
@@ -87,7 +83,7 @@ const FeaturedEvent: React.FC<{ events: EventSummary[] }> = ({ events }) => {
         >
           <Link
             href="/event"
-            className="group inline-flex items-center gap-2 rounded-full border border-indigo-500/40 bg-gradient-to-r from-indigo-600 to-violet-600 px-7 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(99,102,241,0.45)]"
+            className="btn btn-primary group rounded-full px-7 py-3 transition-transform duration-300 hover:scale-105"
           >
             View All Events
 

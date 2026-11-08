@@ -30,8 +30,8 @@ export function CategoryChips({ basePath, query }: CategoryChipsProps) {
             aria-current={active ? "true" : undefined}
             className={`rounded-full px-4 py-1.5 text-xs font-medium transition-colors ${
               active
-                ? "bg-white font-semibold text-black"
-                : "border border-white/10 bg-[#0f141d] text-slate-400 hover:border-white/20 hover:text-white"
+                ? "border border-primary bg-primary font-semibold text-primary-foreground"
+                : "border border-line bg-surface text-muted-foreground hover:border-line-strong hover:text-foreground"
             }`}
           >
             {item.label}

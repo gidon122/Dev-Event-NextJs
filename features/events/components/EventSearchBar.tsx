@@ -35,7 +35,7 @@ export function EventSearchBar() {
   return (
     <div className="relative flex-1">
       <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5">
-        <Search className="h-4 w-4 text-slate-400" />
+        <Search className="h-4 w-4 text-muted-foreground" />
       </div>
       <input
         type="text"
@@ -43,14 +43,14 @@ export function EventSearchBar() {
         onChange={(e) => setValue(e.target.value)}
         placeholder="Search by keyword"
         aria-label="Search events"
-        className="w-full rounded-xl border border-white/10 bg-[#0f141d] py-2.5 pl-10 pr-10 text-xs text-white placeholder-slate-500 focus:border-[#59deca] focus:outline-none"
+        className="w-full rounded-xl border border-line bg-surface py-2.5 pl-10 pr-10 text-xs text-foreground placeholder:text-subtle focus:border-primary focus:outline-none"
       />
       {value && (
         <button
           type="button"
           onClick={() => setValue("")}
           aria-label="Clear search"
-          className="absolute inset-y-0 right-0 flex items-center pr-3.5 text-slate-400 hover:text-white"
+          className="absolute inset-y-0 right-0 flex items-center pr-3.5 text-muted-foreground hover:text-foreground"
         >
           <X className="h-4 w-4" />
         </button>

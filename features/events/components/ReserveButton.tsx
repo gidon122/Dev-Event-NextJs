@@ -12,11 +12,10 @@ interface ReserveButtonProps {
   isAuthenticated: boolean;
 }
 
-const base =
-  "w-full rounded-xl px-4 py-2.5 text-sm font-semibold transition";
-const primary = `${base} bg-[#59deca] text-black hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60`;
-const muted = `${base} cursor-not-allowed border border-white/10 bg-white/5 text-slate-400`;
-const ticketLink = `${base} block border border-[#59deca]/40 bg-[#59deca]/10 text-center text-[#59deca] hover:bg-[#59deca]/20`;
+const base = "w-full rounded-xl px-4 py-2.5 text-sm font-semibold transition";
+const primary = `btn btn-primary ${base} disabled:cursor-not-allowed disabled:opacity-60`;
+const muted = `btn btn-ghost ${base} cursor-not-allowed text-muted-foreground`;
+const ticketLink = `btn ${base} block border border-primary/40 bg-primary/10 text-primary hover:bg-primary/20`;
 
 function loginHref() {
   const next = window.location.pathname + window.location.search;

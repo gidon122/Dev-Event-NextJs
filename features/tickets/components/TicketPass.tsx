@@ -22,19 +22,19 @@ export default async function TicketPass({
     <main className="mx-auto max-w-xl">
       <Link
         href="/tickets"
-        className="mb-6 inline-flex text-sm text-slate-400 transition hover:text-white"
+        className="mb-6 inline-flex text-sm text-muted-foreground transition hover:text-foreground"
       >
         Back to my tickets
       </Link>
-      <section className="rounded-2xl border border-white/10 bg-[#0b0f19] p-6 text-center shadow-xl sm:p-8">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-purple-300">
+      <section className="surface-raised p-6 text-center shadow-xl sm:p-8">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
           EventLoop digital pass
         </p>
-        <h1 className="mt-3 text-2xl font-bold text-white">{ticket.event.title}</h1>
-        <p className="mt-2 text-sm text-slate-400">
+        <h1 className="mt-3 text-2xl font-bold text-foreground">{ticket.event.title}</h1>
+        <p className="mt-2 text-sm text-muted-foreground">
           {formatEventDate(ticket.event.startsAt)}
         </p>
-        <p className="mt-1 text-sm text-slate-400">{ticket.event.venue}</p>
+        <p className="mt-1 text-sm text-muted-foreground">{ticket.event.venue}</p>
 
         <div className="mx-auto my-7 w-fit rounded-xl bg-white p-3">
           <Image
@@ -46,13 +46,13 @@ export default async function TicketPass({
           />
         </div>
 
-        <p className="text-xs text-slate-400">Attendee</p>
-        <p className="mt-1 font-semibold text-white">{ticket.name}</p>
-        <p className="mt-4 text-xs text-slate-400">Ticket ID</p>
-        <p className="mt-1 break-all font-mono text-sm text-purple-300">
+        <p className="text-xs text-muted-foreground">Attendee</p>
+        <p className="mt-1 font-semibold text-foreground">{ticket.name}</p>
+        <p className="mt-4 text-xs text-muted-foreground">Ticket ID</p>
+        <p className="mt-1 break-all font-mono text-sm text-primary">
           {ticket.ticketId}
         </p>
-        <p className="mt-4 text-xs text-slate-400">
+        <p className="mt-4 text-xs text-muted-foreground">
           Present this QR code at event check-in.
         </p>
       </section>

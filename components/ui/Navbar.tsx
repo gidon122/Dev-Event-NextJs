@@ -50,7 +50,7 @@ const Navbar = () => {
               <li>
                 <Link
                   href="/dashboard"
-                  className="flex items-center gap-1.5 text-primary hover:text-white transition-colors font-medium"
+                  className="flex items-center gap-1.5 font-medium text-primary transition-colors hover:text-foreground"
                 >
                   <LayoutDashboard className="h-4 w-4" />
                   <span>Dashboard</span>
@@ -59,7 +59,7 @@ const Navbar = () => {
               <li className="flex items-center gap-3 pl-2">
                 <Link
                   href="/profile"
-                  className="flex h-7 w-7 items-center justify-center rounded-full bg-[#0d2a4a] text-xs font-bold text-[#93c5fa] ring-1 ring-[#1e3a5f] hover:scale-105 transition-transform"
+                  className="flex h-7 w-7 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary ring-1 ring-primary/30 transition-transform hover:scale-105"
                   title={displayName}
                 >
                   {initials}
@@ -67,7 +67,7 @@ const Navbar = () => {
                 <button
                   type="button"
                   onClick={() => signOut({ redirectUrl: "/" })}
-                  className="text-slate-400 hover:text-red-400 transition-colors"
+                  className="text-muted-foreground transition-colors hover:text-destructive"
                   title="Sign out"
                 >
                   <LogOut className="h-4 w-4" />
@@ -78,7 +78,7 @@ const Navbar = () => {
             <li>
               <Link
                 href="/login"
-                className="rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium text-white transition hover:border-primary/50 hover:bg-primary hover:text-black"
+                className="rounded-full border border-line bg-surface-raised px-4 py-1.5 text-xs font-medium text-foreground transition hover:border-primary/50 hover:bg-primary hover:text-primary-foreground"
               >
                 Sign In
               </Link>

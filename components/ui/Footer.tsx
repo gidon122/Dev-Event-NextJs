@@ -2,28 +2,28 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="bg-slate-950 border-t border-primary/30 text-slate-300">
+    <footer className="border-t border-line bg-background text-muted-foreground">
       <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-10 sm:px-6 md:px-8 lg:flex-row lg:items-center lg:justify-between">
         <div>
-          <p className="text-lg font-semibold text-white">DevEvent</p>
-          <p className="mt-2 max-w-xl text-sm text-slate-400 sm:text-base">
+          <p className="text-lg font-semibold text-foreground">DevEvent</p>
+          <p className="mt-2 max-w-xl text-sm text-muted-foreground sm:text-base">
             Connecting developers with curated events, meetups, and community opportunities.
           </p>
         </div>
 
         <div className="grid gap-3 sm:grid-cols-3">
-          <Link href="/event" className="text-sm text-slate-300 transition hover:text-white">
+          <Link href="/event" className="text-sm transition hover:text-foreground">
             Events
           </Link>
-          <a href="/events/create" className="text-sm text-slate-300 transition hover:text-white">
+          <a href="/events/create" className="text-sm transition hover:text-foreground">
             Submit event
           </a>
-          <a href="#why-de" className="text-sm text-slate-300 transition hover:text-white">
+          <a href="#why-de" className="text-sm transition hover:text-foreground">
             Why DevEvent
           </a>
         </div>
 
-        <p className="text-sm text-slate-500">
+        <p className="text-sm text-subtle">
           © {new Date().getFullYear()} DevEvent. All rights reserved.
         </p>
       </div>

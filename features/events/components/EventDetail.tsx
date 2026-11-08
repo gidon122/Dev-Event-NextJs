@@ -93,7 +93,7 @@ export function EventDetail({
         aria-labelledby={titleId}
         aria-describedby={descriptionId}
         tabIndex={-1}
-        className="relative z-10 max-h-[calc(100dvh-2rem)] w-full max-w-3xl overflow-y-auto rounded-[24px] border border-white/10 bg-[#0c1515] p-6 shadow-2xl sm:p-10"
+        className="surface-raised relative z-10 max-h-[calc(100dvh-2rem)] w-full max-w-3xl overflow-y-auto p-6 shadow-2xl sm:p-10"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-start gap-4">
@@ -102,49 +102,49 @@ export function EventDetail({
             type="button"
             onClick={onClose}
             data-dialog-close
-            className="ml-auto rounded-lg p-2 text-slate-400 transition hover:bg-white/10 hover:text-white"
+            className="ml-auto rounded-lg p-2 text-muted-foreground transition hover:bg-surface-hover hover:text-foreground"
             aria-label="Close event details"
           >
             <X className="h-4 w-4" />
           </button>
         </div>
 
-        <h2 id={titleId} className="mt-5 text-3xl font-extrabold text-white sm:text-4xl">
+        <h2 id={titleId} className="page-title mt-5 sm:text-4xl">
           {event.title}
         </h2>
-        <p className="mt-2 text-sm text-slate-400">
-          Organized by <span className="font-semibold text-slate-200">{event.organizerName ?? "Event organizer"}</span>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Organized by <span className="font-semibold text-foreground">{event.organizerName ?? "Event organizer"}</span>
         </p>
 
-        <div className="mt-8 grid grid-cols-1 gap-5 rounded-2xl bg-[#070b0c] p-5 sm:grid-cols-2 sm:p-6">
+        <div className="surface mt-8 grid grid-cols-1 gap-5 p-5 sm:grid-cols-2 sm:p-6">
           <div className="flex min-w-0 items-center gap-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-400">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
               <CalendarDays className="h-5 w-5" />
             </div>
             <div className="min-w-0">
-              <div className="text-[11px] text-slate-400">Date &amp; Time</div>
-              <div className="text-sm font-semibold text-white">{formatEventDate(event.startsAt)}</div>
+              <div className="text-[11px] text-muted-foreground">Date &amp; Time</div>
+              <div className="text-sm font-semibold text-foreground">{formatEventDate(event.startsAt)}</div>
             </div>
           </div>
           <div className="flex min-w-0 items-center gap-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-500/10 text-indigo-400">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-highlight/10 text-highlight">
               <MapPin className="h-5 w-5" />
             </div>
             <div className="min-w-0">
-              <div className="text-[11px] text-slate-400">Location</div>
-              <div className="text-sm font-semibold text-white">{event.venue}</div>
+              <div className="text-[11px] text-muted-foreground">Location</div>
+              <div className="text-sm font-semibold text-foreground">{event.venue}</div>
             </div>
           </div>
         </div>
 
-        <div className="mt-8 border-t border-white/10 pt-7">
-          <h3 className="text-base font-semibold text-white">About this event</h3>
-          <p id={descriptionId} className="mt-3 whitespace-pre-line text-sm leading-relaxed text-slate-300">
+        <div className="mt-8 border-t border-line-strong pt-7">
+          <h3 className="text-base font-semibold text-foreground">About this event</h3>
+          <p id={descriptionId} className="mt-3 whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
             {event.description}
           </p>
         </div>
 
-        <div className="mt-8 flex flex-col gap-5 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-end">
+        <div className="mt-8 flex flex-col gap-5 border-t border-line-strong pt-6 sm:flex-row sm:items-center sm:justify-end">
           <div className="w-full sm:max-w-48">
             <ReserveButton
               event={event}

@@ -36,7 +36,7 @@ export function EventsBrowse({
   return (
     <div className="space-y-6">
       <Suspense
-        fallback={<div className="h-10 rounded-xl bg-[#0f141d]" />}
+        fallback={<div className="h-10 rounded-xl bg-surface" />}
       >
         <EventSearchBar />
       </Suspense>
@@ -63,7 +63,7 @@ export function EventsBrowse({
             hasFilters ? (
               <Link
                 href={basePath}
-                className="rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-xs font-medium text-white transition hover:border-[#59deca] hover:bg-[#59deca] hover:text-black"
+                className="btn btn-ghost px-4 py-2 text-xs hover:border-primary hover:bg-primary hover:text-primary-foreground"
               >
                 Clear filters
               </Link>

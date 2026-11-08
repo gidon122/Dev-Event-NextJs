@@ -5,10 +5,10 @@ const page = () => {
     <div className="max-w-4xl space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+        <h1 className="page-title">
           Profile
         </h1>
-        <p className="mt-1 text-xs text-slate-400">
+        <p className="page-subtitle">
           Manage your personal attendee details and notification preferences
         </p>
       </div>

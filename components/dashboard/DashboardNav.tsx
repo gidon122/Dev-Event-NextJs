@@ -58,16 +58,16 @@ export default function DashboardNav({ children }: DashboardNavProps) {
   ];
 
   return (
-    <div className="flex min-h-screen w-full bg-[#07090e] text-slate-200">
+    <div className="flex min-h-screen w-full bg-background text-foreground">
       {/* Desktop Fixed Left Sidebar (220px) */}
-      <aside className="fixed inset-y-0 left-0 z-30 hidden w-56 flex-col justify-between border-r border-[#151c24] bg-[#0c1017] p-4 md:flex">
+      <aside className="fixed inset-y-0 left-0 z-30 hidden w-56 flex-col justify-between border-r border-sidebar-border bg-sidebar p-4 md:flex">
         <div className="space-y-6">
           {/* Brand */}
           <Link
             href="/"
-            className="flex items-center gap-2.5 px-2 py-1 text-white hover:opacity-90"
+            className="flex items-center gap-2.5 px-2 py-1 text-foreground hover:opacity-90"
           >
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-white/10 bg-white/5">
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-line bg-surface-raised">
               <Image
                 src="/icons/logo.png"
                 alt="EventLoop"
@@ -76,8 +76,8 @@ export default function DashboardNav({ children }: DashboardNavProps) {
                 className="object-contain"
               />
             </div>
-            <span className="text-base font-bold tracking-tight text-white">
-              Event<span className="text-[#59deca]">Loop</span>
+            <span className="text-base font-bold tracking-tight text-foreground">
+              Event<span className="text-primary">Loop</span>
             </span>
           </Link>
 
@@ -91,20 +91,20 @@ export default function DashboardNav({ children }: DashboardNavProps) {
                   href={item.href}
                   className={`flex items-center justify-between rounded-xl px-3.5 py-2.5 text-xs font-medium transition-all ${
                     item.active
-                      ? "bg-[#0b2847] text-[#93c5fd] font-semibold"
-                      : "text-slate-400 hover:bg-white/5 hover:text-slate-200"
+                      ? "bg-sidebar-accent text-sidebar-accent-foreground font-semibold"
+                      : "text-sidebar-foreground hover:bg-surface-hover hover:text-foreground"
                   }`}
                 >
                   <div className="flex items-center gap-3">
-                    <Icon className={`h-4 w-4 ${item.active ? "text-[#60a5fa]" : "text-slate-400"}`} />
+                    <Icon className={`h-4 w-4 ${item.active ? "text-primary" : "text-muted-foreground"}`} />
                     <span>{item.label}</span>
                   </div>
                   {item.badge !== undefined && (
                     <span
                       className={`flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-bold ${
                         item.active
-                          ? "bg-[#1e3a5f] text-blue-200"
-                          : "bg-white/10 text-slate-300"
+                          ? "bg-primary/15 text-primary"
+                          : "bg-surface-hover text-muted-foreground"
                       }`}
                     >
                       {item.badge}
@@ -117,11 +117,11 @@ export default function DashboardNav({ children }: DashboardNavProps) {
         </div>
 
         {/* Bottom Section */}
-        <div className="space-y-3 border-t border-[#151c24] pt-4">
+        <div className="space-y-3 border-t border-sidebar-border pt-4">
           <button
             type="button"
             onClick={() => signOut({ redirectUrl: "/login" })}
-            className="flex w-full items-center gap-3 rounded-xl px-3.5 py-2.5 text-xs font-medium text-slate-400 transition-colors hover:bg-red-500/10 hover:text-red-400"
+            className="flex w-full items-center gap-3 rounded-xl px-3.5 py-2.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive"
           >
             <LogOut className="h-4 w-4" />
             <span>Sign out</span>
@@ -138,7 +138,7 @@ export default function DashboardNav({ children }: DashboardNavProps) {
       </div>
 
       {/* Mobile Bottom Tab Bar (matching pics/image.png) */}
-      <div className="fixed inset-x-0 bottom-0 z-30 flex h-14 items-center justify-around border-t border-[#151c24] bg-[#0c1017] px-2 md:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-30 flex h-14 items-center justify-around border-t border-sidebar-border bg-sidebar px-2 md:hidden">
         {navItems.map((item) => {
           const Icon = item.icon;
           return (
@@ -146,7 +146,7 @@ export default function DashboardNav({ children }: DashboardNavProps) {
               key={item.href}
               href={item.href}
               className={`flex flex-col items-center gap-1 text-[10px] font-medium transition-colors ${
-                item.active ? "text-[#60a5fa]" : "text-slate-400 hover:text-slate-200"
+                item.active                 ? "text-primary" : "text-muted-foreground hover:text-foreground"
               }`}
             >
               <Icon className="h-4 w-4" />

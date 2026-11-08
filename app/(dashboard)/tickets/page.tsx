@@ -17,10 +17,10 @@ export default async function TicketsPage() {
   return (
     <div className="space-y-10">
       <header>
-        <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+        <h1 className="page-title">
           My tickets
         </h1>
-        <p className="mt-1 text-xs text-slate-400">
+        <p className="page-subtitle">
           Your registered event passes and attendance records
         </p>
       </header>
@@ -28,7 +28,7 @@ export default async function TicketsPage() {
       <section aria-labelledby="upcoming-tickets-heading" className="space-y-4">
         <h2
           id="upcoming-tickets-heading"
-          className="text-lg font-semibold text-white"
+          className="text-lg font-semibold text-foreground"
         >
           Upcoming registered events
         </h2>
@@ -43,14 +43,14 @@ export default async function TicketsPage() {
             ))}
           </div>
         ) : (
-          <p className="rounded-xl border border-white/10 bg-white/[0.03] p-5 text-sm text-slate-400">
+          <p className="surface p-5 text-sm text-muted-foreground">
             You have no upcoming registered events.
           </p>
         )}
       </section>
 
       <section aria-labelledby="past-tickets-heading" className="space-y-4">
-        <h2 id="past-tickets-heading" className="text-lg font-semibold text-white">
+        <h2 id="past-tickets-heading" className="text-lg font-semibold text-foreground">
           Past registered events
         </h2>
         {past.length ? (
@@ -64,7 +64,7 @@ export default async function TicketsPage() {
             ))}
           </div>
         ) : (
-          <p className="rounded-xl border border-white/10 bg-white/[0.03] p-5 text-sm text-slate-400">
+          <p className="surface p-5 text-sm text-muted-foreground">
             You have no past registered events.
           </p>
         )}
@@ -73,7 +73,7 @@ export default async function TicketsPage() {
       {unavailable.length > 0 && (
         <p
           role="status"
-          className="rounded-xl border border-amber-900/50 bg-amber-950/30 p-4 text-sm text-amber-200"
+          className="rounded-xl border border-highlight/30 bg-highlight/10 p-4 text-sm text-highlight"
         >
           {unavailable.length} ticket
           {unavailable.length === 1 ? " has" : "s have"} an event that is no
