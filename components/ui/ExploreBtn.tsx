@@ -1,5 +1,5 @@
 "use client"
-import Image from "next/image";
+import { ChevronDown } from "lucide-react";
 
 const ExploreBtn = () => {
   return (
@@ -8,8 +8,7 @@ const ExploreBtn = () => {
     className="mt-7 mx-auto">
       <a href="#events">
         Explore Events
-        {/* public assets use absolute path from /public; folder is "icons" not "icon" */}
-        <Image src="/icons/arrow-down.svg" alt="arrow-down" width={24} height={24}/>
+        <ChevronDown aria-hidden="true" size={24} />
       </a>
       </button>
   )
