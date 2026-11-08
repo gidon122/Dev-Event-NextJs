@@ -80,7 +80,7 @@ const WhyDe = () => {
             viewport={{ once: true }}
             className="inline-flex rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-medium text-primary"
           >
-            Why Developers Love DevEvent
+            Why Developers Love EventLoop
           </motion.span>
 
           <h2 className="mt-6 text-4xl font-bold text-foreground">
@@ -94,7 +94,7 @@ const WhyDe = () => {
           </h2>
 
           <p className="mt-5 text-lg leading-8 text-muted-foreground">
-            DevEvent is more than an event directory.
+            EventLoop is more than an event directory.
             It&apos;s a growing community where developers discover
             opportunities, connect with peers and accelerate
             their careers.

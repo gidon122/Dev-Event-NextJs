@@ -6,7 +6,7 @@ import { listEvents } from "@/features/events/service.server";
 import { getUserRegisteredEventIds } from "@/features/registration/service.server";
 
 export const metadata: Metadata = {
-  title: "Events | DevEvent",
+  title: "Events | EventLoop",
   description: "Browse upcoming developer hackathons, conferences, and meetups.",
 };
 

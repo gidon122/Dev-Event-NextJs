@@ -28,10 +28,15 @@ const Navbar = () => {
   return (
     <header>
       <nav className="flex items-center justify-between">
-        <Link className="logo flex items-center gap-2" href="/">
-          <Image src="/icons/logo.png" alt="logo" width={24} height={24} />
-          <p className="font-bold text-lg">DevEvent</p>
-        </Link>
+        <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-line bg-surface-raised">
+                      <Image
+                        src="/icons/logo.png"
+                        alt="EventLoop"
+                        width={18}
+                        height={18}
+                        className="object-contain"
+                      />
+                    </div>
 
         <ul className="flex list-none items-center gap-6 text-sm">
           <li>

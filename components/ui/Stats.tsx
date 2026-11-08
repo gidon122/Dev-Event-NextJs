@@ -103,7 +103,7 @@ const Stats = () => {
           </h2>
 
           <p className="mx-auto mt-5 max-w-2xl leading-7 text-muted-foreground">
-            DevEvent helps developers discover opportunities,
+            EventLoop helps developers discover opportunities,
             attend world-class events and connect with amazing
             tech communities.
           </p>
