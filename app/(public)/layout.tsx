@@ -14,6 +14,9 @@ const schibstedGrotesk = Schibsted_Grotesk({
 export const metadata: Metadata = {
   title: "EventLoop",
   description: "The Hub for Every Dev Event You Mustn't Miss",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
