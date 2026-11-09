@@ -62,7 +62,6 @@ export default function DashboardNav({ children }: DashboardNavProps) {
         <div className="space-y-6">
           {/* Brand */}
           <Link
-            href="/"
             className="flex items-center gap-2.5 px-2 py-1 text-foreground hover:opacity-90"
           >
             <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-line bg-surface-raised">
