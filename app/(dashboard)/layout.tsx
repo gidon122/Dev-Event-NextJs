@@ -12,6 +12,9 @@ const schibstedGrotesk = Schibsted_Grotesk({
 export const metadata: Metadata = {
   title: "Student Dashboard | EventLoop",
   description: "Manage your campus event passes, tickets, and reviews",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function DashboardLayout({

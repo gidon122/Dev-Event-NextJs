@@ -28,16 +28,18 @@ const Navbar = () => {
   return (
     <header>
       <nav className="flex items-center justify-between">
-        <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-line bg-surface-raised">
-                      <Image
-                        src="/icons/logo.png"
-                        alt="EventLoop"
-                        width={18}
-                        height={18}
-                        className="object-contain"
-                      />
-                    </div>
-
+        <Link href="/" className="flex items-center gap-2.5 px-2 py-1 text-foreground hover:opacity-90">
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-line bg-surface-raised">
+            <Image src="/icons/logo.png"
+              alt="EventLoop"
+              width={18}
+              height={18}
+              className="object-contain" />
+          </div>
+          <span className="text-base font-bold tracking-tight text-foreground">
+            Event<span className="text-primary">Loop</span>
+          </span>
+        </Link>
         <ul className="flex list-none items-center gap-6 text-sm">
           <li>
             <Link href="/" className="hover:text-primary transition-colors">

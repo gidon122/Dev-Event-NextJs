@@ -13,6 +13,9 @@ const schibstedGrotesk = Schibsted_Grotesk({
 export const metadata: Metadata = {
   title: "Authentication | EventLoop",
   description: "Sign in or register for your campus developer event pass",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function AuthLayout({
